@@ -1,7 +1,8 @@
 name: clean_settings
 description: Settings UI generator with sane defaults
 version: 0.1.0
-author: Arif Amirani <arif@groupedapp.com>
+authors:
+  - Arif Amirani <arif@groupedapp.com>
 homepage: https://github.com/grouped/clean_settings
 
 environment:
