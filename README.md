@@ -1,3 +1,5 @@
+[![pub package](https://img.shields.io/pub/v/clean_settings.svg)](https://pub.dartlang.org/packages/clean_settings)
+
 # clean_settings
 
 Settings UI generator with sane defaults.
