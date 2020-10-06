@@ -4,6 +4,10 @@ Settings UI generator with sane defaults.
 
 Creating a settings screen requires the same boiler plate code over and over. Settings also need a rich set of widgets to cover all possible cases. This library aims to provide sane defaults while creating a setting screen.
 
+## Buy Me A Coffee
+
+[![Buy Me A Coffee](https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png "Buy Me A Coffee")](https://www.buymeacoffee.com/arif "Buy Me A Coffee")
+
 ## Features
 
 * Setting Sections
@@ -12,114 +16,65 @@ Creating a settings screen requires the same boiler plate code over and over. Se
 ## Widgets supported
 
 * Checkbox
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/checkbox-item.gif)
 
-* Radio
 
 
-![Simple dots](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/normal.gif)
+* Radio Picker
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/radio-item.gif)
 
+* Text Input
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/text-item.gif)
+
+* Date Picker
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/date-item.gif)
+
+* Date and Time Picker
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/datetime-item.gif)
+
+* Time Picker
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/time-item.gif)
+
+* Wheel - Number List
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-number-item.gif)
+
+* Wheel - Text
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-text-item.gif)
+
+* Custom Handler
+![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/custom-handler-item.gif)
+
+## Structure
+
+```
+
+Root - SettingContainer
+         \
+          \_ SettingSection
+                 \
+                  \_ SettingItem (or Variants) 
+
+```
 
 ## Example
 
-In these example, `pageLength` is the total of dots to display and `currentIndexPage` is the position to hightlight (the active dot).
-
-### A simple dots indicator
-
-![Simple dots](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/normal.gif)
+Creates a simple Checkbox setting item
 
 ```dart
-new DotsIndicator(
-  dotsCount: pageLength,
-  position: currentIndexPage
+SettingContainer(
+  sections: [
+    SettingSection(
+      title: 'Appearance',
+      items: [
+        SettingCheckboxItem(
+            title: 'Smart Reply',
+            value: smartReply,
+            onChanged: (v) => setState(() => smartReply = v),
+            description: 'Show suggested replies when available'),
+      ],
+    ),
+  ],
 )
 ```
 
-### Custom colors
 
-![Custom dots colors](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/custom_color.gif)
-
-```dart
-new DotsIndicator(
-  dotsCount: pageLength,
-  position: currentIndexPage,
-  decorator: DotsDecorator(
-    color: Colors.black87, // Inactive color
-    activeColor: Colors.redAccent,
-  ),
-)
-```
-
-### Custom size
-
-You can change the default size of dots.<br />
-So you can choose to have dots for no active positions and a rounded rectangle for active position for example.<br />
-**By default, the shape of dots is CircleBorder, so to have a rounded rectangle for active, you need to change `activeShape`**
-
-![Custom dots size](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/custom_size.gif)
-
-```dart
-new DotsIndicator(
-  dotsCount: pageLength,
-  position: currentIndexPage,
-  decorator: DotsDecorator(
-    size: const Size.square(9.0),
-    activeSize: const Size(18.0, 9.0),
-    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-  ),
-)
-```
-
-### Custom shape
-
-You can change the default shape of dots. By default it's a CircleBorder.<br />
-You can change the no active and active dot shape.
-
-![Custom dots shape](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/custom_shape.gif)
-
-```dart
-new DotsIndicator(
-  dotsCount: pageLength,
-  position: currentIndexPage,
-  decorator: DotsDecorator(
-    shape: const Border(),
-    activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-  ),
-)
-```
-
-### Change the space between dots
-
-By default a dot have a margin of 6 pixels on his left and right. It's `EdgeInsets.symmetric(horizontal: 6.0)`.
-But if you want you can change it, for example to increase the space between dots or to add top margin.
-
-![Custom dots space](https://raw.githubusercontent.com/Pyozer/dots_indicator/master/demo/custom_space.gif)
-
-```dart
-new DotsIndicator(
-  dotsCount: pageLength,
-  position: currentIndexPage,
-  decorator: DotsDecorator(
-    spacing: const EdgeInsets.all(10.0),
-  ),
-)
-```
-
-### Axis and reverse property
-
-There is two other property, `axis` and `reversed`.
-Axis is to display dots indicator horizontally (default) or vertically.
-Also, you can set `reversed: true` to reverse the order of dots. (default: false).
-
-For example, if you want to display the dots indicator vertically, but with the first dots on bottom :
-Set `axis: Axis.vertical` and `reversed: true`.
-Obviously, you can use reversed with `Axis.horizontal`.
-
-### onTap property
-
-You can add `onTap` property, to listen when a dot has been pressed.
-Exemple:
-```
-onTap: (position) {
-  setState(() => _currentPos = position);
-}
-```
