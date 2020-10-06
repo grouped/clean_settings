@@ -35,16 +35,20 @@ class SettingRadioItem<T> extends StatelessWidget {
           context: context,
           builder: (_) => SimpleDialog(
             title: Text(title),
-            children: items
-                .map((e) => RadioListTile(
-                      selected: e.value == selectedValue,
-                      dense: true,
-                      title: Text(e.title),
-                      value: e.value,
-                      onChanged: (value) => Navigator.of(context, rootNavigator: true).pop(e.value),
-                      groupValue: null,
-                    ))
-                .toList(),
+            children: [
+              ...items
+                  .map((e) => RadioListTile(
+                        autofocus: true,
+                        selected: e.value == selectedValue,
+                        dense: true,
+                        title: Text(e.title, style: TextStyle(fontSize: 14.0)),
+                        value: e.value,
+                        onChanged: (value) => Navigator.of(context, rootNavigator: true).pop(e.value),
+                        groupValue: selectedValue,
+                      ))
+                  .toList(),
+              FlatButton(child: const Text('Cancel'), onPressed: () => Navigator.pop(context)),
+            ],
           ),
         );
         if (changedValue != null) {

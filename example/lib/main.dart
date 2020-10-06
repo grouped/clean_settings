@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Home(),
     );
   }
@@ -84,6 +85,7 @@ class _HomeState extends State<Home> {
                 SettingTextItem(
                   title: 'Auto Reply Message',
                   displayValue: autoReplyMessage,
+                  initialValue: autoReplyMessage,
                   hintText: 'Sent by system on away',
                   onChanged: (v) => setState(() => autoReplyMessage = v),
                 ),
