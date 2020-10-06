@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:clean_settings/clean_settings.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +15,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final myStream = Stream<int>.periodic(Duration(seconds: 1), (x) => (x == 3) ? throw Exception('oops') : x).take(5);
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
 
-class Home extends StatelessWidget {
+class _HomeState extends State<Home> {
+  int counter = 0;
+  String theme = 'System Default';
+  bool smartReply = false;
+  String autoReplyMessage;
+  int daysOfMailToSync = 5;
+
+  int chosenReplyOptionIndex = 1;
+  DateTime dateOfBirth = DateTime.now();
+  DateTime scheduledEmailDateTime = DateTime.now();
+  TimeOfDay dailyEmailAt = TimeOfDay(hour: 9, minute: 0);
+
   @override
   Widget build(BuildContext context) {
+    String dateOfBirthSlug = "${dateOfBirth.year.toString()}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}";
+    String scheduledEmailSlug =
+        "${scheduledEmailDateTime.year.toString()}-${scheduledEmailDateTime.month.toString().padLeft(2, '0')}-${scheduledEmailDateTime.day.toString().padLeft(2, '0')} ${scheduledEmailDateTime.hour.toString().padLeft(2, '0')}:${scheduledEmailDateTime.minute.toString().padLeft(2, '0')}";
+
+    var replyOptions = ['Reply', 'Reply All', 'Last Chosen', 'None'];
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -34,71 +51,75 @@ class Home extends StatelessWidget {
       ),
       body: Container(
         child: SettingContainer(
-          groups: [
-            SettingGroup(
-              title: 'General Settings',
-              sections: [
-                SettingSection(
-                  title: 'Inbox',
+          sections: [
+            SettingSection(
+              title: 'Appearance',
+              items: [
+                SettingItem(
+                  title: 'Simple Counter',
+                  displayValue: counter.toString(),
+                  onTap: () => setState(() => counter++),
+                ),
+                SettingRadioItem<String>(
+                  title: 'Theme',
+                  displayValue: '$theme theme',
+                  selectedValue: theme,
                   items: [
-                    SettingItem(
-                      title: 'Inbox categories',
-                      displayValue: 'Primary, Social, Promotions, Updates, Forums',
-                    ),
+                    SettingRadioValue('Light', 'Light'),
+                    SettingRadioValue('Dark', 'Dark'),
+                    SettingRadioValue('System Default', 'System Default'),
                   ],
+                  onChanged: (v) => setState(() => theme = v),
                 ),
               ],
             ),
-            SettingGroup(
-              title: 'flutter@groupedapp.com',
-              sections: [
-                SettingSection(
-                  title: 'Inbox',
-                  items: [
-                    SettingRadioItem<int>(
-                      title: 'Inbox type',
-                      displayValue: 'Default Inbox',
-                      values: [
-                        SettingRadioValue('Default Inbox', 0),
-                        SettingRadioValue('Priority Inbox', 1),
-                        SettingRadioValue('Scheduled Inbox', 2),
-                      ],
-                      onChanged: (e) {},
-                    ),
-                    SettingTextItem(
-                      title: 'Inbox categories',
-                      displayValue: 'Primary, Social, Promotions, Updates, Forums',
-                      onChanged: (e) {},
-                      hintText: 'Enter category',
-                    ),
-                    SettingWheelPickerItem(
-                      title: 'Days of mail to sync',
-                      displayValue: '30',
-                      items: List.generate(10, (index) => index.toString()),
-                      onChanged: (num value) {},
-                    ),
-                    SettingDateTimeItem<DateTime>(
-                      title: 'Date of birth',
-                      displayValue: 'Primary, Social, Promotions, Updates, Forums',
-                      onChanged: (DateTime value) {},
-                      timePicker: false,
-                    ),
-                    SettingItem(
-                      title: 'Inbox categories',
-                      displayValue: 'Primary, Social, Promotions, Updates, Forums',
-                    ),
-                  ],
+            SettingSection(
+              title: 'Inbox',
+              items: [
+                SettingCheckboxItem(
+                    title: 'Smart Reply',
+                    value: smartReply,
+                    onChanged: (v) => setState(() => smartReply = v),
+                    description: 'Show suggested replies when available'),
+                SettingTextItem(
+                  title: 'Auto Reply Message',
+                  displayValue: autoReplyMessage,
+                  hintText: 'Sent by system on away',
+                  onChanged: (v) => setState(() => autoReplyMessage = v),
                 ),
-                SettingSection(
-                  title: 'Inbox',
-                  items: [
-                    SettingItem(title: 'Inbox type', displayValue: 'Default Inbox'),
-                    SettingCheckboxItem(title: 'Smart Reply', value: true, onChanged: (v) {}, description: 'Show suggested replies when available'),
-                    SettingItem(title: 'Inbox categories', displayValue: 'Primary, Social, Promotions, Updates, Forums'),
-                  ],
-                )
+                SettingWheelPickerItem(
+                  title: 'Days of mail to sync',
+                  displayValue: daysOfMailToSync.toString(),
+                  initialValueIndex: daysOfMailToSync,
+                  items: List.generate(10, (index) => index.toString()),
+                  onChanged: (v) => setState(() => daysOfMailToSync = v),
+                ),
+                SettingWheelPickerItem(
+                  title: 'Default reply action',
+                  displayValue: replyOptions[chosenReplyOptionIndex],
+                  initialValueIndex: chosenReplyOptionIndex,
+                  items: replyOptions,
+                  onChanged: (v) => setState(() => chosenReplyOptionIndex = v),
+                ),
+                SettingDateTimeItem<DateTime>(
+                  title: 'Next Scheduled Email At',
+                  displayValue: scheduledEmailSlug,
+                  onChanged: (v) => setState(() => scheduledEmailDateTime = v),
+                ),
+                SettingDateTimeItem<DateTime>(
+                  title: 'Date of birth',
+                  displayValue: dateOfBirthSlug,
+                  onChanged: (v) => setState(() => dateOfBirth = v),
+                  timePicker: false,
+                ),
+                SettingDateTimeItem<TimeOfDay>(
+                  title: 'Daily wake up email',
+                  displayValue: dailyEmailAt.format(context),
+                  onChanged: (v) => setState(() => dailyEmailAt = v),
+                  datePicker: false,
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -31,10 +31,10 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
       title: title,
       displayValue: displayValue,
       onTap: () async {
-        int changedValueIndex = await showDialog(
+        var changedValueIndex = await showDialog(
           context: context,
           builder: (_) {
-            int selectedValueIndex = initialValueIndex;
+            var selectedValueIndex = initialValueIndex;
             var pickerWidget = Expanded(
               child: CupertinoPicker(
                 scrollController: FixedExtentScrollController(initialItem: initialValueIndex),
@@ -67,7 +67,7 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
             );
           },
         );
-        if (changedValueIndex != initialValueIndex) {
+        if (changedValueIndex != null && changedValueIndex != initialValueIndex) {
           onChanged(changedValueIndex);
         }
       },

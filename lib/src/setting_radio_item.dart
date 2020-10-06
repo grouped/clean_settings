@@ -13,13 +13,13 @@ class SettingRadioItem<T> extends StatelessWidget {
   final String displayValue;
   final T selectedValue;
 
-  final List<SettingRadioValue<T>> values;
+  final List<SettingRadioValue<T>> items;
   final ValueChanged<T> onChanged;
 
   const SettingRadioItem({
     Key key,
     @required this.title,
-    @required this.values,
+    @required this.items,
     @required this.onChanged,
     @required this.displayValue,
     this.selectedValue,
@@ -31,11 +31,11 @@ class SettingRadioItem<T> extends StatelessWidget {
       title: title,
       displayValue: displayValue,
       onTap: () async {
-        T changedValue = await showDialog(
+        var changedValue = await showDialog(
           context: context,
           builder: (_) => SimpleDialog(
             title: Text(title),
-            children: values
+            children: items
                 .map((e) => RadioListTile(
                       selected: e.value == selectedValue,
                       dense: true,
