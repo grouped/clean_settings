@@ -35,7 +35,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    String dateOfBirthSlug = "${dateOfBirth.year.toString()}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}";
+    String dateOfBirthSlug =
+        "${dateOfBirth.year.toString()}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}";
     String scheduledEmailSlug =
         "${scheduledEmailDateTime.year.toString()}-${scheduledEmailDateTime.month.toString().padLeft(2, '0')}-${scheduledEmailDateTime.day.toString().padLeft(2, '0')} ${scheduledEmailDateTime.hour.toString().padLeft(2, '0')}:${scheduledEmailDateTime.minute.toString().padLeft(2, '0')}";
 
@@ -44,7 +45,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(
           'App Settings',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black87),
+          style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w300,
+              color: Colors.black87),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

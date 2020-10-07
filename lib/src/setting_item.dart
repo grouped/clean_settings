@@ -7,7 +7,9 @@ class SettingItem extends StatelessWidget {
   final String displayValue;
   final GestureTapCallback onTap;
 
-  const SettingItem({Key key, @required this.title, this.displayValue, this.onTap}) : super(key: key);
+  const SettingItem(
+      {Key key, @required this.title, this.displayValue, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,9 @@ class SettingItem extends StatelessWidget {
         visualDensity: VisualDensity.comfortable,
         contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
         title: Text(title, style: kItemTitle),
-        subtitle: displayValue != null ? Text(displayValue, style: kItemSubTitle) : null,
+        subtitle: displayValue != null
+            ? Text(displayValue, style: kItemSubTitle)
+            : null,
       ),
     );
   }

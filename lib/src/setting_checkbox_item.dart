@@ -20,10 +20,10 @@ class SettingCheckboxItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      dense: true,
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
       title: Text(title, style: kItemTitle),
-      subtitle: description != null ? Text(description, style: kItemSubTitle) : null,
+      subtitle:
+          description != null ? Text(description, style: kItemSubTitle) : null,
       value: value,
       onChanged: onChanged,
     );

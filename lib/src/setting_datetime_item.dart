@@ -46,7 +46,9 @@ class SettingDateTimeItem<T> extends StatelessWidget {
           }
 
           if (!timePicker) {
-            onChanged(DateTime(datePicked.year, datePicked.month, datePicked.day) as T);
+            onChanged(
+                DateTime(datePicked.year, datePicked.month, datePicked.day)
+                    as T);
             return;
           }
 

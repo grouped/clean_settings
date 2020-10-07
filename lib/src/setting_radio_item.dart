@@ -43,11 +43,15 @@ class SettingRadioItem<T> extends StatelessWidget {
                         dense: true,
                         title: Text(e.title, style: TextStyle(fontSize: 14.0)),
                         value: e.value,
-                        onChanged: (value) => Navigator.of(context, rootNavigator: true).pop(e.value),
+                        onChanged: (value) =>
+                            Navigator.of(context, rootNavigator: true)
+                                .pop(e.value),
                         groupValue: selectedValue,
                       ))
                   .toList(),
-              FlatButton(child: const Text('Cancel'), onPressed: () => Navigator.pop(context)),
+              FlatButton(
+                  child: const Text('Cancel'),
+                  onPressed: () => Navigator.pop(context)),
             ],
           ),
         );
