@@ -1,3 +1,8 @@
+## 0.1.3
+
+* Section title is now optional
+* Improved documentation & code cleanup
+
 ## 0.1.2
 
 * Improved documentation
