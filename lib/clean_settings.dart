@@ -10,3 +10,4 @@ export 'src/setting_section.dart';
 export 'src/setting_styles.dart';
 export 'src/setting_text_item.dart';
 export 'src/setting_wheel_picker_item.dart';
+export 'src/setting_switch_item.dart';
