@@ -17,7 +17,7 @@ class SettingConfirmItem extends StatelessWidget {
     Key key,
     @required this.title,
     this.alertMessage,
-    this.onConfirm,
+    @required this.onConfirm,
     this.alertTitle,
     this.displayValue,
     this.onCancel,

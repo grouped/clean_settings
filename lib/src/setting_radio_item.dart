@@ -23,7 +23,7 @@ class SettingRadioItem<T> extends StatelessWidget {
     Key key,
     @required this.title,
     @required this.items,
-    this.onChanged,
+    @required this.onChanged,
     this.displayValue,
     this.selectedValue,
     this.cancelText,

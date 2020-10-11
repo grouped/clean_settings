@@ -1,7 +1,7 @@
-import 'package:clean_settings/clean_settings.dart';
 import 'package:flutter/material.dart';
 
 import 'setting_item.dart';
+import 'setting_styles.dart';
 
 class SettingTextItem extends StatelessWidget {
   final String title;

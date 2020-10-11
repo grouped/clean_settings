@@ -14,7 +14,7 @@ class SettingCheckboxItem extends StatelessWidget {
     Key key,
     @required this.title,
     @required this.value,
-    this.onChanged,
+    @required this.onChanged,
     this.priority = ItemPriority.normal,
     this.description,
   }) : super(key: key);

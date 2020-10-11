@@ -12,7 +12,7 @@ class SettingItem extends StatelessWidget {
     Key key,
     @required this.title,
     this.displayValue,
-    this.onTap,
+    @required this.onTap,
     this.priority = ItemPriority.normal,
   }) : super(key: key);
 
