@@ -23,8 +23,12 @@ class SettingItem extends StatelessWidget {
       visualDensity: VisualDensity.comfortable,
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
       title: Text(title, style: kItemTitle[priority]),
-      subtitle: displayValue != null ? Text(displayValue, style: kItemSubTitle[priority]) : null,
+      subtitle: displayValue != null
+          ? Text(displayValue, style: kItemSubTitle[priority])
+          : null,
     );
-    return priority == ItemPriority.disabled ? listTile : InkWell(onTap: onTap ?? () {}, child: listTile);
+    return priority == ItemPriority.disabled
+        ? listTile
+        : InkWell(onTap: onTap ?? () {}, child: listTile);
   }
 }

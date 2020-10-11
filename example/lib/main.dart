@@ -38,7 +38,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    String dateOfBirthSlug = "${dateOfBirth.year.toString()}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}";
+    String dateOfBirthSlug =
+        "${dateOfBirth.year.toString()}-${dateOfBirth.month.toString().padLeft(2, '0')}-${dateOfBirth.day.toString().padLeft(2, '0')}";
     String scheduledEmailSlug =
         "${scheduledEmailDateTime.year.toString()}-${scheduledEmailDateTime.month.toString().padLeft(2, '0')}-${scheduledEmailDateTime.day.toString().padLeft(2, '0')} ${scheduledEmailDateTime.hour.toString().padLeft(2, '0')}:${scheduledEmailDateTime.minute.toString().padLeft(2, '0')}";
 
@@ -48,7 +49,10 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(
           'App Settings',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w300, color: Colors.black87),
+          style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w300,
+              color: Colors.black87),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -76,7 +80,9 @@ class _HomeState extends State<Home> {
                   title: 'Simple Counter',
                   displayValue: counter.toString(),
                   onTap: () => setState(() => counter++),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingItem(
                   title: 'Launch Unicorn Startup',
@@ -85,7 +91,9 @@ class _HomeState extends State<Home> {
                   priority: ItemPriority.disabled,
                 ),
                 SettingRadioItem<String>(
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                   title: 'Theme',
                   displayValue: '$theme theme',
                   selectedValue: theme,
@@ -106,9 +114,17 @@ class _HomeState extends State<Home> {
                   displayValue: 'Permanently deletes your account',
                   alertTitle: 'Delete your account',
                   alertMessage: 'Are you sure?',
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.high,
-                  onConfirm: () => _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Confirmed!'), duration: Duration(seconds: 3))),
-                  onCancel: () => _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text('Canceled!'), duration: Duration(seconds: 3))),
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.high,
+                  onConfirm: () => _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                          content: Text('Confirmed!'),
+                          duration: Duration(seconds: 3))),
+                  onCancel: () => _scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                          content: Text('Canceled!'),
+                          duration: Duration(seconds: 3))),
                 ),
                 SettingRadioItem<String>(
                   title: 'Theme',
@@ -120,7 +136,9 @@ class _HomeState extends State<Home> {
                     SettingRadioValue('System Default', 'System Default'),
                   ],
                   onChanged: (v) => setState(() => theme = v),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
               ],
             ),
@@ -132,7 +150,9 @@ class _HomeState extends State<Home> {
                   value: smartReply,
                   onChanged: (v) => setState(() => smartReply = v),
                   description: 'Show suggested replies when available',
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingTextItem(
                   title: 'Auto Reply Message',
@@ -140,7 +160,9 @@ class _HomeState extends State<Home> {
                   initialValue: autoReplyMessage,
                   hintText: 'Sent by system on away',
                   onChanged: (v) => setState(() => autoReplyMessage = v),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingWheelPickerItem(
                   title: 'Days of mail to sync',
@@ -148,7 +170,9 @@ class _HomeState extends State<Home> {
                   initialValueIndex: daysOfMailToSync,
                   items: List.generate(10, (index) => index.toString()),
                   onChanged: (v) => setState(() => daysOfMailToSync = v),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingWheelPickerItem(
                   title: 'Default reply action',
@@ -156,27 +180,35 @@ class _HomeState extends State<Home> {
                   initialValueIndex: chosenReplyOptionIndex,
                   items: replyOptions,
                   onChanged: (v) => setState(() => chosenReplyOptionIndex = v),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingDateTimeItem<DateTime>(
                   title: 'Next Scheduled Email At',
                   displayValue: scheduledEmailSlug,
                   onChanged: (v) => setState(() => scheduledEmailDateTime = v),
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingDateTimeItem<DateTime>(
                   title: 'Date of birth',
                   displayValue: dateOfBirthSlug,
                   onChanged: (v) => setState(() => dateOfBirth = v),
                   timePicker: false,
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
                 SettingDateTimeItem<TimeOfDay>(
                   title: 'Daily wake up email',
                   displayValue: dailyEmailAt.format(context),
                   onChanged: (v) => setState(() => dailyEmailAt = v),
                   datePicker: false,
-                  priority: disableDemoItems ? ItemPriority.disabled : ItemPriority.normal,
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
                 ),
               ],
             ),

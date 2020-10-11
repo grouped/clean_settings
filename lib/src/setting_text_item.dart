@@ -48,8 +48,12 @@ class SettingTextItem extends StatelessWidget {
                 ],
               ),
               actions: <Widget>[
-                FlatButton(child: const Text('Cancel'), onPressed: () => Navigator.pop(context)),
-                FlatButton(child: const Text('OK'), onPressed: () => Navigator.pop(context, controller.text))
+                FlatButton(
+                    child: const Text('Cancel'),
+                    onPressed: () => Navigator.pop(context)),
+                FlatButton(
+                    child: const Text('OK'),
+                    onPressed: () => Navigator.pop(context, controller.text))
               ],
             );
           },

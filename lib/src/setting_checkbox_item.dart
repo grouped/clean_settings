@@ -24,7 +24,9 @@ class SettingCheckboxItem extends StatelessWidget {
     return CheckboxListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
       title: Text(title, style: kItemTitle[priority]),
-      subtitle: description != null ? Text(description, style: kItemSubTitle[priority]) : null,
+      subtitle: description != null
+          ? Text(description, style: kItemSubTitle[priority])
+          : null,
       value: value,
       onChanged: priority == ItemPriority.disabled ? null : onChanged,
     );

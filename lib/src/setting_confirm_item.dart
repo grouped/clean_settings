@@ -33,9 +33,13 @@ class SettingConfirmItem extends StatelessWidget {
       visualDensity: VisualDensity.comfortable,
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
       title: Text(title, style: kItemTitle[priority]),
-      subtitle: displayValue != null ? Text(displayValue, style: kItemSubTitle[priority]) : null,
+      subtitle: displayValue != null
+          ? Text(displayValue, style: kItemSubTitle[priority])
+          : null,
     );
-    return priority == ItemPriority.disabled ? listTile : InkWell(onTap: () => _showConfirmDialog(context), child: listTile);
+    return priority == ItemPriority.disabled
+        ? listTile
+        : InkWell(onTap: () => _showConfirmDialog(context), child: listTile);
   }
 
   Future<void> _showConfirmDialog(BuildContext context) async {
@@ -45,8 +49,12 @@ class SettingConfirmItem extends StatelessWidget {
           title: Text(alertTitle ?? title),
           content: Text(alertMessage),
           actions: <Widget>[
-            FlatButton(child: Text(cancelButtonText ?? 'Cancel'), onPressed: () => Navigator.pop(context, false)),
-            FlatButton(child: Text(okButtonText ?? 'Ok'), onPressed: () => Navigator.pop(context, true))
+            FlatButton(
+                child: Text(cancelButtonText ?? 'Cancel'),
+                onPressed: () => Navigator.pop(context, false)),
+            FlatButton(
+                child: Text(okButtonText ?? 'Ok'),
+                onPressed: () => Navigator.pop(context, true))
           ],
         ));
     if (result) {

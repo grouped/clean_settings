@@ -49,7 +49,9 @@ class SettingRadioItem<T> extends StatelessWidget {
                         dense: true,
                         title: Text(e.title, style: TextStyle(fontSize: 14.0)),
                         value: e.value,
-                        onChanged: (value) => Navigator.of(context, rootNavigator: true).pop(e.value),
+                        onChanged: (value) =>
+                            Navigator.of(context, rootNavigator: true)
+                                .pop(e.value),
                         groupValue: selectedValue,
                       ))
                   .toList(),
@@ -58,7 +60,9 @@ class SettingRadioItem<T> extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    FlatButton(child: Text(cancelText ?? 'Cancel'), onPressed: () => Navigator.pop(context)),
+                    FlatButton(
+                        child: Text(cancelText ?? 'Cancel'),
+                        onPressed: () => Navigator.pop(context)),
                   ],
                 ),
               ),
