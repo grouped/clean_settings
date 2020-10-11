@@ -14,6 +14,7 @@ Creating a settings screen requires the same boiler plate code over and over. Se
 
 * Setting Sections
 * Out-of-the-box widgets for multiple types
+* Read-only items
 
 ## Widgets supported
 
@@ -34,7 +35,7 @@ SettingCheckboxItem(
 * Radio Picker
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/radio-item.gif)
+![Radio Picker](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/radio-item.gif)
 
 ```dart
 
@@ -55,7 +56,7 @@ SettingRadioItem<String>(
 * Text Input
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/text-item.gif)
+![Text Input](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/text-item.gif)
 
 ```dart
 SettingTextItem(
@@ -71,7 +72,7 @@ SettingTextItem(
 * Date and Time Picker
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/datetime-item.gif)
+![Date Time Picker](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/datetime-item.gif)
 
 ```dart
 SettingDateTimeItem<DateTime>(
@@ -85,7 +86,7 @@ SettingDateTimeItem<DateTime>(
 * Date Picker
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/date-item.gif)
+![Date Picker](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/date-item.gif)
 
 ```dart
 SettingDateTimeItem<DateTime>(
@@ -99,7 +100,7 @@ SettingDateTimeItem<DateTime>(
 * Time Picker
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/time-item.gif)
+![Time Picker](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/time-item.gif)
 
 ```dart
 SettingDateTimeItem<TimeOfDay>(
@@ -114,7 +115,7 @@ SettingDateTimeItem<TimeOfDay>(
 * Wheel - Number List
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-number-item.gif)
+![Wheel Number](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-number-item.gif)
 
 ```dart
 SettingWheelPickerItem(
@@ -130,7 +131,7 @@ SettingWheelPickerItem(
 * Wheel - Text
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-text-item.gif)
+![Wheel Text](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/wheel-text-item.gif)
 
 ```dart
 var replyOptions = ['Reply', 'Reply All', 'Last Chosen', 'None'];
@@ -145,10 +146,29 @@ SettingWheelPickerItem(
 ```
 
 
+* Confirm Dialog
+
+
+![Confirm Dialog](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/confirm-item.gif)
+
+```dart
+SettingConfirmItem(
+  title: 'Delete account',
+  displayValue: 'Permanently deletes your account',
+  alertTitle: 'Delete your account',
+  alertMessage: 'Are you sure?',
+  priority: ItemPriority.high,
+  onConfirm: () => {},
+  onCancel: () => {},
+),
+
+```
+
+
 * Custom Handler
 
 
-![Checkbox Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/custom-handler-item.gif)
+![Custom Handler](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/custom-handler-item.gif)
 
 ```dart
 SettingItem(
@@ -169,6 +189,16 @@ Root - SettingContainer
                   \_ SettingItem (or Variants) 
 
 ```
+
+## Common Options
+
+* `priority`
+
+Set the priority of the item to one of:
+   * `ItemPriority.high` - Shows red color
+   * `ItemPriority.normal` - Default color
+   * `ItemPriority.low` - Shows in green color
+   * `ItemPriority.disabled` - Disables the item
 
 ## Example
 

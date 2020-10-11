@@ -1,3 +1,9 @@
+## 0.1.4
+
+* Added confirm dialog item
+* Support for read-only items added - [#1](https://github.com/grouped/clean_settings/issues/1)
+* Improved documentation
+
 ## 0.1.3
 
 * Section title is now optional
