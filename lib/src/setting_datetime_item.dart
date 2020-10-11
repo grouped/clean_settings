@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'setting_item.dart';
+import 'setting_styles.dart';
 
 class SettingDateTimeItem<T> extends StatelessWidget {
   final String title;
@@ -10,16 +11,18 @@ class SettingDateTimeItem<T> extends StatelessWidget {
   final ValueChanged<T> onChanged;
   final bool timePicker;
   final bool datePicker;
+  final ItemPriority priority;
 
-  SettingDateTimeItem({
-    Key key,
-    @required this.title,
-    @required this.onChanged,
-    @required this.displayValue,
-    this.initialDate,
-    this.datePicker = true,
-    this.timePicker = true,
-  }) : super(key: key) {
+  SettingDateTimeItem(
+      {Key key,
+      @required this.title,
+      @required this.onChanged,
+      @required this.displayValue,
+      this.initialDate,
+      this.datePicker = true,
+      this.timePicker = true,
+      this.priority = ItemPriority.normal})
+      : super(key: key) {
     assert(datePicker || timePicker);
     assert(T == DateTime || !datePicker);
     assert(T == TimeOfDay || datePicker);
@@ -28,6 +31,7 @@ class SettingDateTimeItem<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingItem(
+        priority: priority,
         title: title,
         displayValue: displayValue,
         onTap: () async {
@@ -46,13 +50,11 @@ class SettingDateTimeItem<T> extends StatelessWidget {
           }
 
           if (!timePicker) {
-            onChanged(
-                DateTime(datePicked.year, datePicked.month, datePicked.day)
-                    as T);
+            onChanged(DateTime(datePicked.year, datePicked.month, datePicked.day) as T);
             return;
           }
 
-          final TimeOfDay todPicked = await showTimePicker(
+          final todPicked = await showTimePicker(
             context: context,
             initialTime: TimeOfDay.fromDateTime(initialDate ?? DateTime.now()),
           );

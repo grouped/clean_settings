@@ -13,6 +13,7 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
   final int initialValueIndex;
 
   final ValueChanged<int> onChanged;
+  final ItemPriority priority;
 
   const SettingWheelPickerItem({
     Key key,
@@ -23,11 +24,13 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
     this.initialValueIndex = 0,
     this.hintText,
     this.pickerSuffix,
+    this.priority = ItemPriority.normal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SettingItem(
+      priority: priority,
       title: title,
       displayValue: displayValue,
       onTap: () async {
@@ -37,8 +40,7 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
             var selectedValueIndex = initialValueIndex;
             var pickerWidget = Expanded(
               child: CupertinoPicker(
-                scrollController:
-                    FixedExtentScrollController(initialItem: initialValueIndex),
+                scrollController: FixedExtentScrollController(initialItem: initialValueIndex),
                 itemExtent: 50.0,
                 onSelectedItemChanged: (int value) {
                   selectedValueIndex = value;
@@ -59,26 +61,16 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
                 child: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: pickerSuffix == null
-                        ? [pickerWidget]
-                        : [
-                            SizedBox(width: 100.0, child: pickerWidget),
-                            Text(pickerSuffix)
-                          ]),
+                    children: pickerSuffix == null ? [pickerWidget] : [SizedBox(width: 100.0, child: pickerWidget), Text(pickerSuffix)]),
               ),
               actions: <Widget>[
-                FlatButton(
-                    child: const Text('Cancel'),
-                    onPressed: () => Navigator.pop(context)),
-                FlatButton(
-                    child: const Text('OK'),
-                    onPressed: () => Navigator.pop(context, selectedValueIndex))
+                FlatButton(child: const Text('Cancel'), onPressed: () => Navigator.pop(context)),
+                FlatButton(child: const Text('OK'), onPressed: () => Navigator.pop(context, selectedValueIndex))
               ],
             );
           },
         );
-        if (changedValueIndex != null &&
-            changedValueIndex != initialValueIndex) {
+        if (changedValueIndex != null && changedValueIndex != initialValueIndex) {
           onChanged(changedValueIndex);
         }
       },

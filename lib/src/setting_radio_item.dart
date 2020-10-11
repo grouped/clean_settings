@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'setting_item.dart';
+import 'setting_styles.dart';
 
 class SettingRadioValue<T> {
   final String title;
@@ -15,19 +16,24 @@ class SettingRadioItem<T> extends StatelessWidget {
 
   final List<SettingRadioValue<T>> items;
   final ValueChanged<T> onChanged;
+  final String cancelText;
+  final ItemPriority priority;
 
   const SettingRadioItem({
     Key key,
     @required this.title,
     @required this.items,
-    @required this.onChanged,
-    @required this.displayValue,
+    this.onChanged,
+    this.displayValue,
     this.selectedValue,
+    this.cancelText,
+    this.priority = ItemPriority.normal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SettingItem(
+      priority: priority,
       title: title,
       displayValue: displayValue,
       onTap: () async {
@@ -43,15 +49,19 @@ class SettingRadioItem<T> extends StatelessWidget {
                         dense: true,
                         title: Text(e.title, style: TextStyle(fontSize: 14.0)),
                         value: e.value,
-                        onChanged: (value) =>
-                            Navigator.of(context, rootNavigator: true)
-                                .pop(e.value),
+                        onChanged: (value) => Navigator.of(context, rootNavigator: true).pop(e.value),
                         groupValue: selectedValue,
                       ))
                   .toList(),
-              FlatButton(
-                  child: const Text('Cancel'),
-                  onPressed: () => Navigator.pop(context)),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    FlatButton(child: Text(cancelText ?? 'Cancel'), onPressed: () => Navigator.pop(context)),
+                  ],
+                ),
+              ),
             ],
           ),
         );

@@ -5,6 +5,7 @@ import 'setting_styles.dart';
 class SettingCheckboxItem extends StatelessWidget {
   final String title;
   final String description;
+  final ItemPriority priority;
 
   final bool value;
   final ValueChanged<bool> onChanged;
@@ -13,7 +14,8 @@ class SettingCheckboxItem extends StatelessWidget {
     Key key,
     @required this.title,
     @required this.value,
-    @required this.onChanged,
+    this.onChanged,
+    this.priority = ItemPriority.normal,
     this.description,
   }) : super(key: key);
 
@@ -21,11 +23,10 @@ class SettingCheckboxItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return CheckboxListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
-      title: Text(title, style: kItemTitle),
-      subtitle:
-          description != null ? Text(description, style: kItemSubTitle) : null,
+      title: Text(title, style: kItemTitle[priority]),
+      subtitle: description != null ? Text(description, style: kItemSubTitle[priority]) : null,
       value: value,
-      onChanged: onChanged,
+      onChanged: priority == ItemPriority.disabled ? null : onChanged,
     );
   }
 }

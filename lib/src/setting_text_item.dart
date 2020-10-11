@@ -1,3 +1,4 @@
+import 'package:clean_settings/clean_settings.dart';
 import 'package:flutter/material.dart';
 
 import 'setting_item.dart';
@@ -9,6 +10,7 @@ class SettingTextItem extends StatelessWidget {
   final String initialValue;
 
   final ValueChanged<String> onChanged;
+  final ItemPriority priority;
 
   const SettingTextItem({
     Key key,
@@ -17,11 +19,13 @@ class SettingTextItem extends StatelessWidget {
     @required this.displayValue,
     this.initialValue,
     this.hintText,
+    this.priority = ItemPriority.normal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SettingItem(
+      priority: priority,
       title: title,
       displayValue: displayValue,
       onTap: () async {
@@ -44,12 +48,8 @@ class SettingTextItem extends StatelessWidget {
                 ],
               ),
               actions: <Widget>[
-                FlatButton(
-                    child: const Text('Cancel'),
-                    onPressed: () => Navigator.pop(context)),
-                FlatButton(
-                    child: const Text('OK'),
-                    onPressed: () => Navigator.pop(context, controller.text))
+                FlatButton(child: const Text('Cancel'), onPressed: () => Navigator.pop(context)),
+                FlatButton(child: const Text('OK'), onPressed: () => Navigator.pop(context, controller.text))
               ],
             );
           },
