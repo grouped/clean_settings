@@ -71,6 +71,13 @@ class _HomeState extends State<Home> {
                   value: disableDemoItems,
                   onChanged: (v) => setState(() => disableDemoItems = v),
                 ),
+                SettingSwitchItem(
+                  title: 'Disable all items',
+                  description: 'Disabled all demo options',
+                  priority: ItemPriority.high,
+                  value: disableDemoItems,
+                  onChanged: (v) => setState(() => disableDemoItems = v),
+                ),
               ],
             ),
             SettingSection(
