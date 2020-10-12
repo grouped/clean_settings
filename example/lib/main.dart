@@ -36,6 +36,8 @@ class _HomeState extends State<Home> {
 
   bool disableDemoItems = false;
 
+  bool smartCompose = true;
+
   @override
   Widget build(BuildContext context) {
     String dateOfBirthSlug =
@@ -65,13 +67,6 @@ class _HomeState extends State<Home> {
               title: 'Demo Options',
               items: [
                 SettingCheckboxItem(
-                  title: 'Disable all items',
-                  description: 'Disabled all demo options',
-                  priority: ItemPriority.high,
-                  value: disableDemoItems,
-                  onChanged: (v) => setState(() => disableDemoItems = v),
-                ),
-                SettingSwitchItem(
                   title: 'Disable all items',
                   description: 'Disabled all demo options',
                   priority: ItemPriority.high,
@@ -157,6 +152,15 @@ class _HomeState extends State<Home> {
                   value: smartReply,
                   onChanged: (v) => setState(() => smartReply = v),
                   description: 'Show suggested replies when available',
+                  priority: disableDemoItems
+                      ? ItemPriority.disabled
+                      : ItemPriority.normal,
+                ),
+                SettingSwitchItem(
+                  title: 'Smart Compose',
+                  value: smartCompose,
+                  onChanged: (v) => setState(() => smartCompose = v),
+                  description: 'Show predictive writing suggestions',
                   priority: disableDemoItems
                       ? ItemPriority.disabled
                       : ItemPriority.normal,

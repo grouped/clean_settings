@@ -6,10 +6,6 @@ Settings UI generator with sane defaults.
 
 Creating a settings screen requires the same boiler plate code over and over. Settings also need a rich set of widgets to cover all possible cases. This library aims to provide sane defaults while creating a setting screen.
 
-## Buy Me A Coffee
-
-[![Buy Me A Coffee](https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png "Buy Me A Coffee")](https://www.buymeacoffee.com/arif "Buy Me A Coffee")
-
 ## Features
 
 * Setting Sections
@@ -30,6 +26,21 @@ SettingCheckboxItem(
     value: smartReply,
     onChanged: (v) => setState(() => smartReply = v),
     description: 'Show suggested replies when available'),
+```
+
+* Switch
+
+![Switch Widget](https://raw.githubusercontent.com/grouped/clean_settings/master/demo/switch-item.gif)
+
+```dart
+
+SettingSwitchItem(
+  title: 'Smart Compose',
+  value: smartCompose,
+  onChanged: (v) => setState(() => smartCompose = v),
+  description: 'Show predictive writing suggestions',
+  priority: ItemPriority.high,
+),
 ```
 
 * Radio Picker
@@ -226,4 +237,8 @@ SettingContainer(
 * Early version
 * API bound to change as more widgets get added
 * Please report bugs/issues/features
+
+## Buy Me A Coffee
+
+[![Buy Me A Coffee](https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png "Buy Me A Coffee")](https://www.buymeacoffee.com/arif "Buy Me A Coffee")
 

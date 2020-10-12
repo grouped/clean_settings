@@ -1,6 +1,6 @@
 name: clean_settings
 description: Settings UI generator with sane defaults. Removes the need for boilerplate code and provides a rich set of highly opinionated widgets.
-version: 0.1.4
+version: 0.1.5
 homepage: https://github.com/grouped/clean_settings
 
 environment:
