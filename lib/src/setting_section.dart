@@ -4,9 +4,10 @@ import 'setting_styles.dart';
 
 class SettingSection extends StatelessWidget {
   final String title;
+  final TextStyle titleStyle;
   final List<Widget> items;
 
-  const SettingSection({Key key, @required this.items, this.title})
+  const SettingSection({Key key, @required this.items, this.title, this.titleStyle})
       : super(key: key);
 
   @override
@@ -16,7 +17,7 @@ class SettingSection extends StatelessWidget {
       children: [
         if (title != null)
           ListTile(
-              title: Text(title, style: kSectionTitle),
+              title: Text(title, style: titleStyle ?? kGetDefaultSectionTitleStyle(context)),
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               dense: true,
@@ -26,7 +27,7 @@ class SettingSection extends StatelessWidget {
           shrinkWrap: true,
           itemCount: items.length,
           separatorBuilder: (BuildContext context, int index) =>
-              Divider(height: 2.0, color: kSeparator),
+              Divider(height: 2.0, color: Theme.of(context).dividerColor),
           itemBuilder: (BuildContext context, int index) => items[index],
         ),
       ],

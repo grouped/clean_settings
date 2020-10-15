@@ -5,7 +5,9 @@ import 'setting_styles.dart';
 
 class SettingDateTimeItem<T> extends StatelessWidget {
   final String title;
+  final TextStyle titleStyle;
   final String displayValue;
+  final TextStyle displayValueStyle;
   final DateTime initialDate;
 
   final ValueChanged<T> onChanged;
@@ -20,6 +22,8 @@ class SettingDateTimeItem<T> extends StatelessWidget {
       @required this.displayValue,
       this.initialDate,
       this.datePicker = true,
+      this.titleStyle,
+      this.displayValueStyle,
       this.timePicker = true,
       this.priority = ItemPriority.normal})
       : super(key: key) {
@@ -33,7 +37,9 @@ class SettingDateTimeItem<T> extends StatelessWidget {
     return SettingItem(
         priority: priority,
         title: title,
+        titleStyle: titleStyle,
         displayValue: displayValue,
+        displayValueStyle: displayValueStyle,
         onTap: () async {
           DateTime datePicked;
           if (datePicker) {
