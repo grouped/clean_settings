@@ -5,7 +5,9 @@ import 'setting_styles.dart';
 
 class SettingTextItem extends StatelessWidget {
   final String title;
+  final TextStyle titleStyle;
   final String displayValue;
+  final TextStyle displayValueStyle;
   final String hintText;
   final String initialValue;
 
@@ -15,8 +17,10 @@ class SettingTextItem extends StatelessWidget {
   const SettingTextItem({
     Key key,
     @required this.title,
+    this.titleStyle,
     @required this.onChanged,
     @required this.displayValue,
+    this.displayValueStyle,
     this.initialValue,
     this.hintText,
     this.priority = ItemPriority.normal,
@@ -27,7 +31,9 @@ class SettingTextItem extends StatelessWidget {
     return SettingItem(
       priority: priority,
       title: title,
+      titleStyle: titleStyle,
       displayValue: displayValue,
+      displayValueStyle: displayValueStyle,
       onTap: () async {
         var changedValue = await showDialog(
           context: context,

@@ -4,6 +4,10 @@ import 'setting_styles.dart';
 
 class SettingConfirmItem extends StatelessWidget {
   final String title;
+  ///Custom [TextStyle] to use for the widget title
+  ///
+  /// Setting this property disables title coloring based on the [priority] parameter
+  final TextStyle titleStyle;
   final String displayValue;
   final String alertMessage;
   final String alertTitle;
@@ -16,6 +20,7 @@ class SettingConfirmItem extends StatelessWidget {
   const SettingConfirmItem({
     Key key,
     @required this.title,
+    this.titleStyle,
     this.alertMessage,
     @required this.onConfirm,
     this.alertTitle,
@@ -32,9 +37,9 @@ class SettingConfirmItem extends StatelessWidget {
       dense: true,
       visualDensity: VisualDensity.comfortable,
       contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
-      title: Text(title, style: kItemTitle[priority]),
+      title: Text(title, style: titleStyle ?? kGetDefaultTitleStyle(context, priority)),
       subtitle: displayValue != null
-          ? Text(displayValue, style: kItemSubTitle[priority])
+          ? Text(displayValue, style: kGetDefaultSubTitleStyle(context, priority))
           : null,
     );
     return priority == ItemPriority.disabled

@@ -11,7 +11,9 @@ class SettingRadioValue<T> {
 
 class SettingRadioItem<T> extends StatelessWidget {
   final String title;
+  final TextStyle titleStyle;
   final String displayValue;
+  final TextStyle displayValueStyle;
   final T selectedValue;
 
   final List<SettingRadioValue<T>> items;
@@ -22,9 +24,11 @@ class SettingRadioItem<T> extends StatelessWidget {
   const SettingRadioItem({
     Key key,
     @required this.title,
+    this.titleStyle,
     @required this.items,
     @required this.onChanged,
     this.displayValue,
+    this.displayValueStyle,
     this.selectedValue,
     this.cancelText,
     this.priority = ItemPriority.normal,
@@ -35,7 +39,9 @@ class SettingRadioItem<T> extends StatelessWidget {
     return SettingItem(
       priority: priority,
       title: title,
+      titleStyle: titleStyle,
       displayValue: displayValue,
+      displayValueStyle: displayValueStyle,
       onTap: () async {
         var changedValue = await showDialog(
           context: context,
