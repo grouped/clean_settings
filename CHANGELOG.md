@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Replaced deprecated child argument of showDialog
+
 ## 0.1.5
 
 * Added support for Switch item (Thanks to @gkathir15)

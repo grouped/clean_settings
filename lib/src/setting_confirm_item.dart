@@ -44,8 +44,9 @@ class SettingConfirmItem extends StatelessWidget {
 
   Future<void> _showConfirmDialog(BuildContext context) async {
     var result = await showDialog(
-        context: context,
-        child: AlertDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
           title: Text(alertTitle ?? title),
           content: Text(alertMessage),
           actions: <Widget>[
@@ -56,7 +57,9 @@ class SettingConfirmItem extends StatelessWidget {
                 child: Text(okButtonText ?? 'Ok'),
                 onPressed: () => Navigator.pop(context, true))
           ],
-        ));
+        );
+      },
+    );
     if (result) {
       onConfirm();
     } else {
