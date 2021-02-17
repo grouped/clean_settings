@@ -5,7 +5,7 @@ import 'setting_section.dart';
 class SettingContainer extends StatefulWidget {
   final List<SettingSection> sections;
 
-  const SettingContainer({Key key, @required this.sections}) : super(key: key);
+  const SettingContainer({Key? key, required this.sections}) : super(key: key);
 
   @override
   _SettingContainerState createState() => _SettingContainerState();

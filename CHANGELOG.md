@@ -1,6 +1,7 @@
 ## 0.2.0
 
-* Replaced deprecated child argument of showDialog
+* Migrated to null safety
+* Replaced deprecated argument
 
 ## 0.1.5
 

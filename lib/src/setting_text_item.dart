@@ -5,18 +5,18 @@ import 'setting_styles.dart';
 
 class SettingTextItem extends StatelessWidget {
   final String title;
-  final String displayValue;
-  final String hintText;
-  final String initialValue;
+  final String? displayValue;
+  final String? hintText;
+  final String? initialValue;
 
   final ValueChanged<String> onChanged;
   final ItemPriority priority;
 
   const SettingTextItem({
-    Key key,
-    @required this.title,
-    @required this.onChanged,
-    @required this.displayValue,
+    Key? key,
+    required this.title,
+    required this.onChanged,
+    required this.displayValue,
     this.initialValue,
     this.hintText,
     this.priority = ItemPriority.normal,
@@ -29,7 +29,7 @@ class SettingTextItem extends StatelessWidget {
       title: title,
       displayValue: displayValue,
       onTap: () async {
-        var changedValue = await showDialog(
+        final changedValue = await showDialog(
           context: context,
           builder: (_) {
             var controller = TextEditingController(text: initialValue);
@@ -48,17 +48,17 @@ class SettingTextItem extends StatelessWidget {
                 ],
               ),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                     child: const Text('Cancel'),
                     onPressed: () => Navigator.pop(context)),
-                FlatButton(
+                TextButton(
                     child: const Text('OK'),
                     onPressed: () => Navigator.pop(context, controller.text))
               ],
             );
           },
         );
-        if (changedValue != initialValue) {
+        if (changedValue != null && changedValue != initialValue) {
           onChanged(changedValue);
         }
       },

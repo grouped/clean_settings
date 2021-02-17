@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'setting_styles.dart';
 
 class SettingSection extends StatelessWidget {
-  final String title;
+  final String? title;
   final List<Widget> items;
 
-  const SettingSection({Key key, @required this.items, this.title})
-      : super(key: key);
+  const SettingSection({
+    Key? key,
+    required this.items,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class SettingSection extends StatelessWidget {
       children: [
         if (title != null)
           ListTile(
-              title: Text(title, style: kSectionTitle),
+              title: Text(title!, style: kSectionTitle),
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               dense: true,

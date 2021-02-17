@@ -6,9 +6,8 @@ import 'setting_styles.dart';
 
 class SettingWheelPickerItem<T> extends StatelessWidget {
   final String title;
-  final String displayValue;
-  final String hintText;
-  final String pickerSuffix;
+  final String? displayValue;
+  final String? pickerSuffix;
   final List<T> items;
   final int initialValueIndex;
 
@@ -16,13 +15,12 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
   final ItemPriority priority;
 
   const SettingWheelPickerItem({
-    Key key,
-    @required this.title,
-    @required this.onChanged,
-    @required this.displayValue,
-    @required this.items,
+    Key? key,
+    required this.title,
+    required this.onChanged,
+    required this.displayValue,
+    required this.items,
     this.initialValueIndex = 0,
-    this.hintText,
     this.pickerSuffix,
     this.priority = ItemPriority.normal,
   }) : super(key: key);
@@ -48,10 +46,11 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
                 },
                 children: items
                     .map((e) => Center(
-                            child: Text(
-                          e.toString(),
-                          style: kWheelPickerItem,
-                        )))
+                          child: Text(
+                            e.toString(),
+                            style: kWheelPickerItem,
+                          ),
+                        ))
                     .toList(),
               ),
             );
@@ -66,14 +65,14 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
                         ? [pickerWidget]
                         : [
                             SizedBox(width: 100.0, child: pickerWidget),
-                            Text(pickerSuffix)
+                            Text(pickerSuffix!),
                           ]),
               ),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                     child: const Text('Cancel'),
                     onPressed: () => Navigator.pop(context)),
-                FlatButton(
+                TextButton(
                     child: const Text('OK'),
                     onPressed: () => Navigator.pop(context, selectedValueIndex))
               ],
