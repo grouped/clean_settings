@@ -1,4 +1,4 @@
-import 'package:clean_settings/clean_settings.dart';
+import 'package:clean_settings/clean_settings_nnbd.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,11 +22,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   int counter = 0;
   String theme = 'System Default';
   bool smartReply = false;
-  String autoReplyMessage;
+  String? autoReplyMessage;
   int daysOfMailToSync = 5;
 
   int chosenReplyOptionIndex = 1;
@@ -47,7 +46,6 @@ class _HomeState extends State<Home> {
 
     var replyOptions = ['Reply', 'Reply All', 'Last Chosen', 'None'];
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'App Settings',
@@ -71,7 +69,8 @@ class _HomeState extends State<Home> {
                   description: 'Disabled all demo options',
                   priority: ItemPriority.high,
                   value: disableDemoItems,
-                  onChanged: (v) => setState(() => disableDemoItems = v),
+                  onChanged: (v) =>
+                      setState(() => disableDemoItems = v != null ? v : false),
                 ),
               ],
             ),
@@ -119,11 +118,11 @@ class _HomeState extends State<Home> {
                   priority: disableDemoItems
                       ? ItemPriority.disabled
                       : ItemPriority.high,
-                  onConfirm: () => _scaffoldKey.currentState.showSnackBar(
+                  onConfirm: () => ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                           content: Text('Confirmed!'),
                           duration: Duration(seconds: 3))),
-                  onCancel: () => _scaffoldKey.currentState.showSnackBar(
+                  onCancel: () => ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                           content: Text('Canceled!'),
                           duration: Duration(seconds: 3))),
@@ -150,7 +149,8 @@ class _HomeState extends State<Home> {
                 SettingCheckboxItem(
                   title: 'Smart Reply',
                   value: smartReply,
-                  onChanged: (v) => setState(() => smartReply = v),
+                  onChanged: (v) =>
+                      setState(() => smartReply = v != null ? v : false),
                   description: 'Show suggested replies when available',
                   priority: disableDemoItems
                       ? ItemPriority.disabled

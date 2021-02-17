@@ -1,4 +1,4 @@
-library clean_settings;
+library clean_settings_nnbd;
 
 export 'src/setting_checkbox_item.dart';
 export 'src/setting_confirm_item.dart';
