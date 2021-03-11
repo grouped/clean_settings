@@ -1,10 +1,10 @@
 name: clean_settings_nnbd
-description: Null safety version of clean_settings package. Settings UI generator with sane defaults. Removes the need for boilerplate code and provides a rich set of highly opinionated widgets.
-version: 0.1.0
-homepage: https://github.com/mzdm/clean_settings
+description: Settings UI generator with sane defaults. Null safety version of the clean_settings package.
+version: 0.2.0
+homepage: https://github.com/mzdm/clean_settings_nnbd
 
 environment:
-  sdk: ">=2.12.0-259.9.beta <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -13,4 +13,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.10.0
+  pedantic: ^1.11.0

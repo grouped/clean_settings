@@ -51,11 +51,13 @@ class SettingConfirmItem extends StatelessWidget {
           content: Text(alertMessage),
           actions: <Widget>[
             TextButton(
-                child: Text(cancelButtonText),
-                onPressed: () => Navigator.pop(context, false)),
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(cancelButtonText),
+            ),
             TextButton(
-                child: Text(okButtonText),
-                onPressed: () => Navigator.pop(context, true))
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(okButtonText),
+            ),
           ],
         );
       },

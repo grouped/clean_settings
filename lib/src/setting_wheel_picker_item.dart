@@ -70,11 +70,13 @@ class SettingWheelPickerItem<T> extends StatelessWidget {
               ),
               actions: <Widget>[
                 TextButton(
-                    child: const Text('Cancel'),
-                    onPressed: () => Navigator.pop(context)),
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Cancel'),
+                ),
                 TextButton(
-                    child: const Text('OK'),
-                    onPressed: () => Navigator.pop(context, selectedValueIndex))
+                  onPressed: () => Navigator.pop(context, selectedValueIndex),
+                  child: const Text('OK'),
+                ),
               ],
             );
           },

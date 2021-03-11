@@ -1,4 +1,4 @@
-import 'package:clean_settings/clean_settings_nnbd.dart';
+import 'package:clean_settings_nnbd/clean_settings_nnbd.dart';
 import 'package:flutter/material.dart';
 
 void main() {
